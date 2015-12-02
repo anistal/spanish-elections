@@ -82,7 +82,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.stratio.runners.TwitterElectionRunner</mainClass>
+                            <mainClass>com.stratio.election.runner.TwitterElectionRunner</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

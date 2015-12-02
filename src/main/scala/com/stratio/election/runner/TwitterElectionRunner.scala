@@ -65,7 +65,7 @@ object TwitterElectionRunner {
   }
 
   def processStatus(status: Status): Unit = {
-    logger.info(status.getText)
+    logger.info(s">> ${status.getText}")
     generateUnique(status)
     generateHashtags(status)
     generateUserMentions(status)
