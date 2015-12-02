@@ -22,11 +22,6 @@ object TwitterElectionRunner {
   private val hashtag = ""
   private val url = ""
   private val media = ""
-  private val currentUserRetweetId = ""
-  private val user = ""
-  private val locationFirstLevel = ""
-  private val locationSecondLevel = ""
-  private val followersCount = 0
 
   implicit val formats: Formats = DefaultFormats
 
@@ -91,6 +86,23 @@ object TwitterElectionRunner {
     val id = status.getId
     val createdAt = status.getCreatedAt.getTime
     val text = status.getText
+
+    val currentUserRetweetId = status.getCurrentUserRetweetId
+    val user = status.getUser.getScreenName
+    val locationFirstLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(0)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val locationSecondLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(1)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val followersCount = status.getUser.getFollowersCount
+
     val unique = "true"
 
     val twitterModel = TwitterModel(id, createdAt, text, userMention, hashtag, url, media, currentUserRetweetId,
@@ -103,6 +115,23 @@ object TwitterElectionRunner {
     val id = status.getId
     val createdAt = status.getCreatedAt.getTime
     val text = status.getText
+
+    val currentUserRetweetId = status.getCurrentUserRetweetId
+    val user = status.getUser.getScreenName
+    val locationFirstLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(0)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val locationSecondLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(1)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val followersCount = status.getUser.getFollowersCount
+
     val unique = "false"
 
     status.getHashtagEntities.map(hashtagEntity => {
@@ -117,6 +146,23 @@ object TwitterElectionRunner {
     val id = status.getId
     val createdAt = status.getCreatedAt.getTime
     val text = status.getText
+
+    val currentUserRetweetId = status.getCurrentUserRetweetId
+    val user = status.getUser.getScreenName
+    val locationFirstLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(0)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val locationSecondLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(1)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val followersCount = status.getUser.getFollowersCount
+
     val unique = "false"
     status.getUserMentionEntities.map(userMentionEntity => {
       val twitterModel = TwitterModel(id, createdAt, text, userMentionEntity.getScreenName, hashtag, url, media,
@@ -130,6 +176,23 @@ object TwitterElectionRunner {
     val id = status.getId
     val createdAt = status.getCreatedAt.getTime
     val text = status.getText
+
+    val currentUserRetweetId = status.getCurrentUserRetweetId
+    val user = status.getUser.getScreenName
+    val locationFirstLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(0)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val locationSecondLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(1)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val followersCount = status.getUser.getFollowersCount
+
     val unique = "false"
     status.getURLEntities.map(uRLEntity => {
       val twitterModel = TwitterModel(id, createdAt, text, userMention, hashtag, uRLEntity.getExpandedURL, media,
@@ -143,12 +206,29 @@ object TwitterElectionRunner {
     val id = status.getId
     val createdAt = status.getCreatedAt.getTime
     val text = status.getText
+
+    val currentUserRetweetId = status.getCurrentUserRetweetId
+    val user = status.getUser.getScreenName
+    val locationFirstLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(0)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val locationSecondLevel = if(status.getUser.getLocation != null) {
+      Try(status.getUser.getLocation.split(",")(1)) match {
+        case Success(value) => value
+        case Failure(exception) => ""
+      }
+    }  else ""
+    val followersCount = status.getUser.getFollowersCount
+
     val unique = "false"
     status.getMediaEntities.map(mediaEntity => {
       val twitterModel = TwitterModel(id, createdAt, text, userMention, hashtag, url, mediaEntity.getExpandedURL,
         currentUserRetweetId,
         user, locationFirstLevel, locationSecondLevel, followersCount, unique)
-      KafkaProducer.put(producer, KafkaTopic ,write(twitterModel))
+      KafkaProducer.put(producer, KafkaTopic, write(twitterModel))
     })
   }
 }
