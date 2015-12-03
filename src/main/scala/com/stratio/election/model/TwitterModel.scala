@@ -1,6 +1,6 @@
 package com.stratio.election.model
 
-case class TwitterModel(id: Long,
+case class TwitterModel(idTweet: Long,
                         createdAt: Long,
                         text: String,
                         userMention: String,
@@ -12,4 +12,6 @@ case class TwitterModel(id: Long,
                         locationFirstLevel: String,
                         locationSecondLevel: String,
                         followersCount: Int,
+                        retweetCount: Int,
+                        favorited: String,
                         unique: String) {}

@@ -90,23 +90,25 @@ object TwitterElectionRunner {
     val currentUserRetweetId = status.getCurrentUserRetweetId
     val user = status.getUser.getScreenName
     val locationFirstLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(0)) match {
+      Try(status.getUser.getLocation.split(",")(0).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val locationSecondLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(1)) match {
+      Try(status.getUser.getLocation.split(",")(1).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val followersCount = status.getUser.getFollowersCount
+    val retweetCount = status.getRetweetCount
+    val favorited = status.isFavorited.toString
 
     val unique = "true"
 
     val twitterModel = TwitterModel(id, createdAt, text, userMention, hashtag, url, media, currentUserRetweetId,
-      user, locationFirstLevel, locationSecondLevel, followersCount, unique)
+      user, locationFirstLevel, locationSecondLevel, followersCount, retweetCount, favorited, unique)
 
     KafkaProducer.put(producer, KafkaTopic ,write(twitterModel))
   }
@@ -119,25 +121,27 @@ object TwitterElectionRunner {
     val currentUserRetweetId = status.getCurrentUserRetweetId
     val user = status.getUser.getScreenName
     val locationFirstLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(0)) match {
+      Try(status.getUser.getLocation.split(",")(0).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val locationSecondLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(1)) match {
+      Try(status.getUser.getLocation.split(",")(1).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val followersCount = status.getUser.getFollowersCount
+    val retweetCount = status.getRetweetCount
+    val favorited = status.isFavorited.toString
 
     val unique = "false"
 
     status.getHashtagEntities.map(hashtagEntity => {
       val twitterModel = TwitterModel(id, createdAt, text, userMention, hashtagEntity.getText, url, media,
-        currentUserRetweetId,
-        user, locationFirstLevel, locationSecondLevel, followersCount, unique)
+        currentUserRetweetId, user, locationFirstLevel, locationSecondLevel, followersCount, retweetCount,
+        favorited, unique)
       KafkaProducer.put(producer, KafkaTopic ,write(twitterModel))
     })
   }
@@ -150,24 +154,26 @@ object TwitterElectionRunner {
     val currentUserRetweetId = status.getCurrentUserRetweetId
     val user = status.getUser.getScreenName
     val locationFirstLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(0)) match {
+      Try(status.getUser.getLocation.split(",")(0).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val locationSecondLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(1)) match {
+      Try(status.getUser.getLocation.split(",")(1).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val followersCount = status.getUser.getFollowersCount
+    val retweetCount = status.getRetweetCount
+    val favorited = status.isFavorited.toString
 
     val unique = "false"
     status.getUserMentionEntities.map(userMentionEntity => {
       val twitterModel = TwitterModel(id, createdAt, text, userMentionEntity.getScreenName, hashtag, url, media,
         currentUserRetweetId,
-        user, locationFirstLevel, locationSecondLevel, followersCount, unique)
+        user, locationFirstLevel, locationSecondLevel, followersCount, retweetCount, favorited, unique)
       KafkaProducer.put(producer, KafkaTopic ,write(twitterModel))
     })
   }
@@ -180,24 +186,26 @@ object TwitterElectionRunner {
     val currentUserRetweetId = status.getCurrentUserRetweetId
     val user = status.getUser.getScreenName
     val locationFirstLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(0)) match {
+      Try(status.getUser.getLocation.split(",")(0).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val locationSecondLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(1)) match {
+      Try(status.getUser.getLocation.split(",")(1).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val followersCount = status.getUser.getFollowersCount
+    val retweetCount = status.getRetweetCount
+    val favorited = status.isFavorited.toString
 
     val unique = "false"
     status.getURLEntities.map(uRLEntity => {
       val twitterModel = TwitterModel(id, createdAt, text, userMention, hashtag, uRLEntity.getExpandedURL, media,
         currentUserRetweetId,
-        user, locationFirstLevel, locationSecondLevel, followersCount, unique)
+        user, locationFirstLevel, locationSecondLevel, followersCount, retweetCount, favorited, unique)
       KafkaProducer.put(producer, KafkaTopic , write(twitterModel))
     })
   }
@@ -210,24 +218,26 @@ object TwitterElectionRunner {
     val currentUserRetweetId = status.getCurrentUserRetweetId
     val user = status.getUser.getScreenName
     val locationFirstLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(0)) match {
+      Try(status.getUser.getLocation.split(",")(0).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val locationSecondLevel = if(status.getUser.getLocation != null) {
-      Try(status.getUser.getLocation.split(",")(1)) match {
+      Try(status.getUser.getLocation.split(",")(1).trim) match {
         case Success(value) => value
         case Failure(exception) => ""
       }
     }  else ""
     val followersCount = status.getUser.getFollowersCount
+    val retweetCount = status.getRetweetCount
+    val favorited = status.isFavorited.toString
 
     val unique = "false"
     status.getMediaEntities.map(mediaEntity => {
-      val twitterModel = TwitterModel(id, createdAt, text, userMention, hashtag, url, mediaEntity.getExpandedURL,
-        currentUserRetweetId,
-        user, locationFirstLevel, locationSecondLevel, followersCount, unique)
+      val twitterModel = TwitterModel(id, createdAt, text, userMention, hashtag, url, mediaEntity.getURL,
+        currentUserRetweetId, user, locationFirstLevel, locationSecondLevel, followersCount, retweetCount, favorited,
+          unique)
       KafkaProducer.put(producer, KafkaTopic, write(twitterModel))
     })
   }
