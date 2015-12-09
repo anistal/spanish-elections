@@ -1,0 +1,64 @@
+albacete,Albacete
+alicante,Alicante
+almeria,Almería
+araba,Álava
+alava,Álava
+álava,Álava
+asturias,Asturias
+avila,Ávila
+ávila,Ávila
+badajos,Badajoz
+baleares,Baleares
+barcelona,Barcelona
+bizcaia,Bizkaia
+vizcaya,Vizcaya
+burgos,Burgos
+caceres,Cáceres
+cáceres,Cáceres
+cadiz,Cádiz
+cádiz,Cádiz
+cantabria,Cantabria
+castellon,Castellón
+castellón,Castellón
+ciudad real,Ciudad Real
+cordoba,Córdoba
+córdoba,Córdoba
+coruña,La Coruña
+cuenca,Cuenca
+gipuzkoa,Gipuzkoa
+girona,Girona
+granada,Granada
+guadalajara,Guadalajara
+huelva,Huelva
+huesca,Huesca
+jaen,Jaén
+jaén,Jaén
+leon,León
+león,León
+lleida,Lleida
+lugo,Lugo
+madrid,Madrid
+malaga,Málaga
+málaga,Málaga
+murcia,Murcia
+navarra,Navarra
+ourense,Ourense
+orense,Ourense
+palencia,Palencia
+palmas,Las Palmas
+pontevedra,Pontevedra
+rioja,La Rioja
+salamanca,Salamanca
+tenerife,Santa Cruz de Tenerife
+segovia,Segovia
+sevilla,Sevilla
+soria,Soria
+tarragona,Tarragona
+teruel,Teruel
+toledo,Toledo
+valencia,Valencia
+valladolid,Valladolid
+zamora,Zamora
+zaragoza,Zaragoza
+ceuta,Ceuta
+melilla,Melilla
